@@ -1,0 +1,36 @@
+{
+  "routerMap": [
+    {
+      "name": "Index",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "IndexBuilder",
+      "data": {
+        "description" : "this is PageOne"
+      }
+    },
+    {
+      "name": "HttpPage",
+      "pageSourceFile": "src/main/ets/pages/HttpPage.ets",
+      "buildFunction": "HttpPageBuilder",
+      "data": {
+        "description" : "this is PageOne"
+      }
+    },
+    {
+      "name": "WebSocketTestPage",
+      "pageSourceFile": "src/main/ets/pages/WebSocket.ets",
+      "buildFunction": "WebSocketTestPageBuilder",
+      "data": {
+        "description" : "this is PageOne"
+      }
+    },
+    {
+      "name": "TcpSocketTestPage",
+      "pageSourceFile": "src/main/ets/pages/TcpSocket.ets",
+      "buildFunction": "TcpSocketTestPageBuilder",
+      "data": {
+        "description" : "this is PageOne"
+      }
+    }
+  ]
+}
