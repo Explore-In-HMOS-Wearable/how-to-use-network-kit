@@ -10,9 +10,11 @@ export function IndexBuilder() {
 struct Index {
   @State message: string = 'Hello World';
   pageStack : NavPathStack = new NavPathStack();
+  private uiContext = this.getUIContext();
+  private realContext = this.uiContext.getHostContext()
 
   aboutToAppear(): void {
-    PermissionsUtil.requestPermissions(['ohos.permission.INTERNET'])
+    PermissionsUtil.requestPermissions(['ohos.permission.INTERNET'],this.realContext!)
   }
 
   build() {

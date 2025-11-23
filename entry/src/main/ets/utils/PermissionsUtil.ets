@@ -1,4 +1,6 @@
-import { abilityAccessCtrl, bundleManager, common, PermissionRequestResult, Permissions } from '@kit.AbilityKit';
+import { abilityAccessCtrl, bundleManager, common,
+  Context,
+  PermissionRequestResult, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -7,7 +9,7 @@ const domain = 0x0000;
 class PermissionsUtil {
 
 
-  async checkPermissions(permissions: Array<Permissions>): Promise<void> {
+  async checkPermissions(permissions: Array<Permissions>,context:Context): Promise<void> {
     let applyResult: boolean = false;
     for (let permission of permissions) {
       let grantStatus: abilityAccessCtrl.GrantStatus = await this.checkAccessToken(permission);
@@ -20,7 +22,7 @@ class PermissionsUtil {
       }
     }
     if (!applyResult) {
-      this.requestPermissions(permissions);
+      this.requestPermissions(permissions, context);
     }
   }
 
@@ -49,9 +51,9 @@ class PermissionsUtil {
   }
 
 
-  requestPermissions(permissions: Array<Permissions>): void {
+  requestPermissions(permissions: Array<Permissions>, context:Context): void {
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(getContext() as common.UIAbilityContext, permissions)
+    atManager.requestPermissionsFromUser(context, permissions)
       .then((data: PermissionRequestResult) => {
         hilog.info(0x0000,'','request Permissions success')
       })

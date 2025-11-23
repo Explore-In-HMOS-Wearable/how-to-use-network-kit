@@ -30,7 +30,7 @@ struct HttpPage {
 
     // Send HTTP GET Request
     httpRequest.request(
-      'https://' + $r("app.string.url"),
+      'https://' + $r('app.string.url'),
       {
         method: http.RequestMethod.GET,
         header: {
