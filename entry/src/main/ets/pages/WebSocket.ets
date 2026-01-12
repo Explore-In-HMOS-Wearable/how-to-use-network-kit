@@ -35,14 +35,14 @@ struct WebSocketTestPage {
 
     ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
       if (typeof value === 'string') {
-        this.appendLog('Received string message: ' + value);
+        this.appendLog(`Received string message: ${value}`);
       } else {
-        this.appendLog('Received binary message: ' + value.toString());
+        this.appendLog(`Received binary message: ${value.toString()}`);
       }
     });
 
     ws.on('error', (err: Error) => {
-      this.appendLog('WebSocket error ❌: ' + JSON.stringify(err));
+      this.appendLog(`WebSocket error ❌: ${JSON.stringify(err)}`);
     });
 
     ws.on('close', () => {
@@ -50,12 +50,12 @@ struct WebSocketTestPage {
     });
 
     const url = 'wss://echo.websocket.org';
-    this.appendLog('Connecting to: ' + url);
+    this.appendLog(`Connecting to: ${url}`);
 
     try {
       ws.connect(url);
     } catch (e) {
-      this.appendLog('Connection exception: ' + JSON.stringify(e));
+      this.appendLog(`Connection exception: ${JSON.stringify(e)}`);
     }
   }
 
@@ -66,11 +66,11 @@ struct WebSocketTestPage {
     }
 
     try {
-      const message = 'Ping 🛰️ at ' + new Date().toISOString();
+      const message = `Ping 🛰️ at ${new Date().toISOString()}` ;
       ws.send(message);
-      this.appendLog('Sent: ' + message);
+      this.appendLog(`Sent: ${message}`);
     } catch (e) {
-      this.appendLog('Send failed: ' + JSON.stringify(e));
+      this.appendLog(`Send failed: ${JSON.stringify(e)}`);
     }
   }
 
@@ -84,7 +84,7 @@ struct WebSocketTestPage {
       ws.close();
       this.appendLog('Close initiated.');
     } catch (e) {
-      this.appendLog('Close failed: ' + JSON.stringify(e));
+      this.appendLog(`Close failed: ${JSON.stringify(e)}`);
     }
   }
 

@@ -12,6 +12,7 @@ struct TcpSocketTestPage {
   private tcp = socket.constructTCPSocketInstance();
   @State log: string = 'Press connect to start TCP test.\n';
   pathStack: NavPathStack = new NavPathStack();
+  private bindAddress = ''; //PLEASE USE AN REAL IP ADDRESS HERE!!
 
   private appendLog(message: string) {
     this.log += `[${new Date().toLocaleTimeString()}] ${message}\n`;
@@ -27,11 +28,11 @@ struct TcpSocketTestPage {
     this.tcp.on('message', (value) => {
       const buffer = new Uint8Array(value.message);
       const message = Array.from(buffer).map(byte => String.fromCharCode(byte)).join('');
-      this.appendLog('📥 Received: ' + message);
+      this.appendLog(`📥 Received: ${message}`);
     });
 
     this.tcp.on('error', (err: BusinessError) => {
-      this.appendLog('❌ Socket error: ' + JSON.stringify(err));
+      this.appendLog(`❌ Socket error: ${JSON.stringify(err)}`);
     });
 
     this.tcp.on('close', () => {
@@ -43,13 +44,13 @@ struct TcpSocketTestPage {
     this.setupSocketEvents();
 
     const bindAddress: socket.NetAddress = {
-      address: '0.0.0.0',
+      address: this.bindAddress,
       port: 0
     };
 
     this.tcp.bind(bindAddress, (err: BusinessError) => {
       if (err) {
-        this.appendLog('❌ Bind failed: ' + JSON.stringify(err));
+        this.appendLog(`❌ Bind failed: ${JSON.stringify(err)}`);
         return;
       }
 
@@ -70,7 +71,7 @@ struct TcpSocketTestPage {
       this.tcp.connect(connectOptions).then(() => {
         this.appendLog('➡️ Connect initiated');
       }).catch((err: BusinessError) => {
-        this.appendLog('❌ Connect failed: ' + JSON.stringify(err));
+        this.appendLog(`❌ Connect failed: ${JSON.stringify(err)}`);
       });
     });
   }
@@ -82,9 +83,9 @@ struct TcpSocketTestPage {
     };
 
     this.tcp.send(sendOptions).then(() => {
-      this.appendLog('📤 Sent: ' + message);
+      this.appendLog(`📤 Sent: ${message}`);
     }).catch((err: BusinessError) => {
-      this.appendLog('❌ Send failed: ' + JSON.stringify(err));
+      this.appendLog(`❌ Send failed: ${JSON.stringify(err)}`);
     });
   }
 
@@ -92,7 +93,7 @@ struct TcpSocketTestPage {
     this.tcp.close().then(() => {
       this.appendLog('🔚 Socket closed manually');
     }).catch((err: BusinessError) => {
-      this.appendLog('❌ Close failed: ' + JSON.stringify(err));
+      this.appendLog(`❌ Close failed: ${JSON.stringify(err)}`);
     });
 
     this.tcp.off('connect');

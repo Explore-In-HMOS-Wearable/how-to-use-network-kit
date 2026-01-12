@@ -8,7 +8,6 @@ export function IndexBuilder() {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
   pageStack : NavPathStack = new NavPathStack();
   private uiContext = this.getUIContext();
   private realContext = this.uiContext.getHostContext()

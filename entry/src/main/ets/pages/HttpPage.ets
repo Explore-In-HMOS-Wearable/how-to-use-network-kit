@@ -8,6 +8,7 @@ export function HttpPageBuilder() {
 @Entry
 @Component
 struct HttpPage {
+  private streamByteUrl = '' //Give your stream byte URL Here
   pathStack: NavPathStack = new NavPathStack();
   @State requestLog: string = 'Press the button to start HTTP test.\n';
 
@@ -21,7 +22,7 @@ struct HttpPage {
 
     // Register headers receive observer
     httpRequest.on('headersReceive', (header) => {
-      this.appendLog('✅Headers received: ' + JSON.stringify(header));
+      this.appendLog(`✅Headers received: ${JSON.stringify(header)}`);
     });
 
     httpRequest.on('dataSendProgress', (progress) => {
@@ -30,7 +31,7 @@ struct HttpPage {
 
     // Send HTTP GET Request
     httpRequest.request(
-      'https://' + $r('app.string.url'),
+      `https:// + ${$r('app.string.url')}`,
       {
         method: http.RequestMethod.GET,
         header: {
@@ -41,10 +42,10 @@ struct HttpPage {
       },
       (err, data) => {
         if (err) {
-          this.appendLog('❌Request error: ' + JSON.stringify(err));
+          this.appendLog(`❌Request error: ${JSON.stringify(err)}` );
         } else {
-          this.appendLog('❌Status Code: ' + data.responseCode);
-          this.appendLog('✅Response Body: ' + data.result);
+          this.appendLog(`❌Status Code: ${ data.responseCode}`);
+          this.appendLog(`✅Response Body: ${data.result}`);
         }
 
         httpRequest.destroy(); // Clean up
@@ -57,11 +58,11 @@ struct HttpPage {
     const httpRequest = http.createHttp();
 
     httpRequest.on('headersReceive', (header) => {
-      this.appendLog('✅[Stream] Headers: ' + JSON.stringify(header));
+      this.appendLog(`✅[Stream] Headers: ${JSON.stringify(header)}`);
     });
 
     httpRequest.on('dataReceive', (chunk) => {
-      this.appendLog('✅[Stream] Data chunk: ' + chunk);
+      this.appendLog(`✅[Stream] Data chunk: ${chunk}` );
     });
 
     httpRequest.on('dataReceiveProgress', (progress) => {
@@ -75,7 +76,7 @@ struct HttpPage {
 
     // Use bytes endpoint for large content
     httpRequest.requestInStream(
-      'https://httpbin.org/stream-bytes/1024',
+      this.streamByteUrl,
       {
         method: http.RequestMethod.GET,
         header: {
@@ -84,7 +85,7 @@ struct HttpPage {
       },
       (err) => {
         if (err) {
-          this.appendLog('❌[Stream] Error: ' + JSON.stringify(err));
+          this.appendLog(`❌[Stream] Error: ${JSON.stringify(err)}`);
           httpRequest.destroy();
         }
       }

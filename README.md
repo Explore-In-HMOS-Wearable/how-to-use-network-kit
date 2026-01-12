@@ -10,13 +10,13 @@ The goal is to ensure stable, secure, and bug-free networking in HarmonyOS appli
 # Preview
 
 <div style="display: flex; width:'100%'; gap:12px;">
-    <img src="./screenshots/1.png" width="24%">
-    <img src="./screenshots/2.png" width="24%">
-    <img src="./screenshots/3.png" width="24%">
-    <img src="./screenshots/4.png" width="24%">
+    <img src="./screenshots/1.png" width="25%">
+    <img src="./screenshots/2.png" width="25%">
+    <img src="./screenshots/3.png" width="25%">
+    <img src="./screenshots/4.png" width="25%">
 </div>
 
-## Use Case Scenario
+# Use Cases
 
 - **Main Page**:
     - Users can select 3 different main functions: Http Request, Web Socket Test, TCP Socket Test
@@ -32,7 +32,7 @@ The goal is to ensure stable, secure, and bug-free networking in HarmonyOS appli
   - Send Test Message – Sends a message and logs the echoed response.
   - Close Connection – Terminates the TCP connection and unsubscribes events.
 
-## Tech Stack
+# Tech Stack
 
 - **Languages**: ArkTS/ArkUI
 - **Frameworks**: HarmonyOS SDK 5.0.0.25
