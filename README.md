@@ -9,11 +9,11 @@ The goal is to ensure stable, secure, and bug-free networking in HarmonyOS appli
 
 # Preview
 
-<div style="display: flex; width:'100%'; gap:12px;">
-    <img src="./screenshots/1.png" width="25%">
-    <img src="./screenshots/2.png" width="25%">
-    <img src="./screenshots/3.png" width="25%">
-    <img src="./screenshots/4.png" width="25%">
+<div>
+    <img src="./screenshots/1.png" width="24%">
+    <img src="./screenshots/2.png" width="24%">
+    <img src="./screenshots/3.png" width="24%">
+    <img src="./screenshots/4.png" width="24%">
 </div>
 
 # Use Cases
